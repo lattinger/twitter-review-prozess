@@ -21,6 +21,7 @@ public class NotifyEmployeeDelegate implements JavaDelegate{
      * @param de     Objekt welches die Verknüpfung zur Process Engine und aktuellen Execution enthält
      * @throws Exception
      */
+    
     @Override
     public void execute(DelegateExecution de) throws Exception {
         // Prozessvariablen auslesen
@@ -28,10 +29,13 @@ public class NotifyEmployeeDelegate implements JavaDelegate{
         String tweetContent = (String) de.getVariable("tweetContent");
         String checkResult = (String) de.getVariable("checkResult");
         String checkResultComment = (String) de.getVariable("checkResultComment");
+        String mailMainPart = (String)de.getVariable("mailMainPart");
         
         // Die E-Mail-Nachricht zusammenbauen
         String mailHauptteil;
-        if(checkResult.equals("rejected")){
+        if(mailMainPart != null) {
+            mailHauptteil = mailMainPart;
+        } else if(checkResult.equals("rejected")){
             mailHauptteil = "Leider wurde diese Tweet-Anfrage abgelehnt mit " +
                     "folgender Begründung:\n" + checkResultComment;
         } else {
