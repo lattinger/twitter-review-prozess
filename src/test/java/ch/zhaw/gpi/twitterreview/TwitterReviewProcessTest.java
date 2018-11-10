@@ -60,7 +60,7 @@ public class TwitterReviewProcessTest {
      * Autowiring der vorliegenden Klasse zur Verfügung gestellt
      */    
     @Autowired
-    private RuntimeService runtimeService;
+   private RuntimeService runtimeService; 
 
     @Autowired
     private ManagementService managementService;
